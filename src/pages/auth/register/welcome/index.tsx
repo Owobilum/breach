@@ -16,7 +16,11 @@ function RegisterWelcomePage(): ReactElement {
           className="absolute  -top-2 lg:right-[17rem] lg:top-28"
         />
       </div>
-
+      <img
+        src="/images/confetti.gif"
+        alt="confetti"
+        className="absolute  -top-0 z-20 "
+      />
       <h1 className="text-grey-900 font-inter mt-7 text-center text-[2.625rem] font-semibold leading-[3.5rem]">
         Welcome to Breach 🥳
       </h1>
