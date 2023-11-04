@@ -1,16 +1,21 @@
+import { type ReactElement } from "react";
+
 import { Icon, type SVGElementProps } from "../icons";
 import { cn } from "../../utils/helpers";
+import { Link } from "react-router-dom";
 
-function BeachLogo(props: Omit<SVGElementProps, "name">) {
+function BreachLogo(props: Omit<SVGElementProps, "name">): ReactElement {
   const { className, ...restProps } = props;
 
   return (
-    <Icon
-      {...restProps}
-      name="breach"
-      className={cn("fill-purple-600 h-[1.5rem] w-[9rem]", className)}
-    />
+    <Link to="/">
+      <Icon
+        name="breach"
+        className={cn("h-6 w-36 fill-primary-600", className)}
+        {...restProps}
+      />
+    </Link>
   );
 }
 
-export { BeachLogo };
+export { BreachLogo };

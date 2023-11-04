@@ -1,12 +1,19 @@
 import { type ReactElement } from "react";
 
-import { Header } from "../components/sections/homepage/header";
+import { HomepageHeroSection } from "../components/sections/homepage/hero";
+import { HomepagePostsSection } from "../components/sections/homepage/posts";
+import { HomepageCategoriesSection } from "../components/sections/homepage/categories";
+import { Container } from "../components/container";
 
 function HomePage(): ReactElement {
   return (
-    <div>
-      <Header />
-    </div>
+    <>
+      <HomepageHeroSection />
+      <Container className="flex gap-10 pb-[16.875rem] pt-20">
+        <HomepagePostsSection />
+        <HomepageCategoriesSection />
+      </Container>
+    </>
   );
 }
 

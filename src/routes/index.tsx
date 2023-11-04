@@ -1,5 +1,6 @@
 import type { IRoute } from "../types";
 import {
+  HomePageLazy,
   RegisterInterestsPageLazy,
   RegisterPageLazy,
   RegisterSuccessPageLazy,
@@ -7,7 +8,6 @@ import {
 } from "./lazy-import";
 import { RegisterLayout } from "../components/layouts/RegisterLayout";
 import { SuspenseWrapper } from "../components/suspense-wrapper";
-import { UserInnerLayout } from "../components/layouts/UserInnerLayout";
 
 export const authRoutes: IRoute[] = [
   {
@@ -44,17 +44,22 @@ export const authRoutes: IRoute[] = [
 
 export const userRoutes: IRoute[] = [
   {
+    path: "home",
+    element: (
+      <SuspenseWrapper>
+        <UserHomePageLazy />
+      </SuspenseWrapper>
+    ),
+  },
+];
+
+export const visitorRoutes: IRoute[] = [
+  {
     path: "",
-    element: <UserInnerLayout />,
-    children: [
-      {
-        path: "home",
-        element: (
-          <SuspenseWrapper>
-            <UserHomePageLazy />
-          </SuspenseWrapper>
-        ),
-      },
-    ],
+    element: (
+      <SuspenseWrapper>
+        <HomePageLazy />
+      </SuspenseWrapper>
+    ),
   },
 ];

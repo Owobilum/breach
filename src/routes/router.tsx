@@ -1,19 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { authRoutes, userRoutes } from ".";
+import { authRoutes, userRoutes, visitorRoutes } from ".";
 import { AuthLayout } from "../components/layouts/AuthLayout";
 import { UserLayout } from "../components/layouts/UserLayout";
-import { SuspenseWrapper } from "../components/suspense-wrapper";
-import { HomePageLazy } from "./lazy-import";
+import { VisitorLayout } from "../components/layouts/VisitorLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <SuspenseWrapper>
-        <HomePageLazy />
-      </SuspenseWrapper>
-    ),
+    element: <VisitorLayout />,
+    children: [...visitorRoutes],
   },
   {
     path: "/auth",
