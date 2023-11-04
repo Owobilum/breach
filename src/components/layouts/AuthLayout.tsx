@@ -1,13 +1,20 @@
 import { type ReactElement } from "react";
 import { Outlet } from "react-router-dom";
 
+import { Container } from "../container";
+import { BreachLogo } from "../logo";
+
 function AuthLayout(): ReactElement {
   return (
     <div>
-      <h1>Auth Layout</h1>
-      <main>
-        <Outlet />
-      </main>
+      <Container>
+        <header className="flex h-[7.5rem] items-center">
+          <BreachLogo />
+        </header>
+        <main>
+          <Outlet />
+        </main>
+      </Container>
     </div>
   );
 }

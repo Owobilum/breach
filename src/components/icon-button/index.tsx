@@ -1,7 +1,7 @@
 import { type ReactElement, type ReactNode } from "react";
 import { Button, type ButtonProps } from "../button";
 
-interface IconButtonProps extends ButtonProps {
+export interface IconButtonProps extends ButtonProps {
   icon: ReactNode;
 }
 

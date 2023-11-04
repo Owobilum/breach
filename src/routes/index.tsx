@@ -3,7 +3,7 @@ import {
   HomePageLazy,
   RegisterInterestsPageLazy,
   RegisterPageLazy,
-  RegisterSuccessPageLazy,
+  RegisterWelcomePageLazy,
   UserHomePageLazy,
 } from "./lazy-import";
 import { RegisterLayout } from "../components/layouts/RegisterLayout";
@@ -23,10 +23,10 @@ export const authRoutes: IRoute[] = [
         ),
       },
       {
-        path: "success",
+        path: "welcome",
         element: (
           <SuspenseWrapper>
-            <RegisterSuccessPageLazy />
+            <RegisterWelcomePageLazy />
           </SuspenseWrapper>
         ),
       },
