@@ -50,6 +50,26 @@ export const userRoutes: IRoute[] = [
         <UserHomePageLazy />
       </SuspenseWrapper>
     ),
+    routeDescriptors: {
+      name: "Home",
+      icon: "home",
+    },
+  },
+  {
+    path: "dashboard",
+    element: <h1>User Dashboard</h1>,
+    routeDescriptors: {
+      name: "Dashboard",
+      icon: "grid",
+    },
+  },
+  {
+    path: "publications",
+    element: <div>User Publications</div>,
+    routeDescriptors: {
+      name: "Publications",
+      icon: "text",
+    },
   },
 ];
 

@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
 import { type RouteObject } from "react-router-dom";
+import { type IconNameType } from "../components/icons";
 
 export interface IAdditionalRouteProps {
-  sidebarProps?: {
-    text: string;
-    icon: ReactNode;
+  routeDescriptors?: {
+    name: string;
+    icon: IconNameType;
   };
 }
 

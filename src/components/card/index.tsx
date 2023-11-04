@@ -71,7 +71,10 @@ function Body(props: PropsWithChildren<BodyProps>): ReactElement {
   const { children, className, ...restProps } = props;
 
   return (
-    <p className={cn("text-grey-600 text-base", className)} {...restProps}>
+    <p
+      className={cn("text-grey-600 line-clamp-2 text-base", className)}
+      {...restProps}
+    >
       {children}
     </p>
   );
@@ -96,7 +99,10 @@ function Card(props: PropsWithChildren<CardProps>): ReactElement {
 
   return (
     <article
-      className={cn("font-inter flex w-full items-start gap-7", className)}
+      className={cn(
+        "font-inter flex h-[11.5rem] w-full items-start  gap-7",
+        className,
+      )}
       {...restProps}
     >
       {children}
