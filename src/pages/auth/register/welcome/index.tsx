@@ -13,7 +13,7 @@ function RegisterWelcomePage(): ReactElement {
         <img
           src="/images/welcome_message.svg"
           alt="welcome_message"
-          className="absolute  right-[17rem] top-28"
+          className="absolute  -top-2 lg:right-[17rem] lg:top-28"
         />
       </div>
 

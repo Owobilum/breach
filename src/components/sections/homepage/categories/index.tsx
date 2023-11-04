@@ -4,7 +4,7 @@ import { IconButton } from "../../../icon-button";
 
 function HomepageCategoriesSection(): ReactElement {
   return (
-    <aside className="max-w-[22.875rem]">
+    <aside className="xl:min-w-[22.875rem] xl:max-w-[22.9rem]">
       <h2 className="text-grey-900 font-inter leading-11 text-[2rem] font-semibold">
         Categories
       </h2>

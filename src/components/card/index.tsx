@@ -15,7 +15,10 @@ function Image(props: ImageProps): ReactElement {
   return (
     <img
       src={src}
-      className={cn("block h-[11.5rem] w-[16.625rem] rounded-2xl", className)}
+      className={cn(
+        "block w-full rounded-2xl lg:h-[11.5rem] lg:w-[16.625rem]",
+        className,
+      )}
       {...restProps}
     />
   );
@@ -100,7 +103,7 @@ function Card(props: PropsWithChildren<CardProps>): ReactElement {
   return (
     <article
       className={cn(
-        "font-inter flex h-[11.5rem] w-full items-start  gap-7",
+        "font-inter flex w-full flex-col gap-4 lg:h-[11.5rem] lg:flex-row lg:items-start  lg:gap-7",
         className,
       )}
       {...restProps}

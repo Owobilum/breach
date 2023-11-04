@@ -6,7 +6,7 @@ import { PostInfo } from "../../../post-info";
 
 function HomepagePostsSection(): ReactElement {
   return (
-    <section>
+    <section className="lg:min-w-[40rem] lg:max-w-[42rem] xl:min-w-[46rem] xl:max-w-[48.5625rem]">
       <Tabs defaultValue="featured">
         <TabsList>
           <TabsTrigger value="featured">Featured</TabsTrigger>

@@ -6,7 +6,7 @@ import { PostInfo } from "../../components/post-info";
 
 function UserHomepageStreamsSection(): ReactElement {
   return (
-    <aside className="border-grey-200  w-[33%] border-b border-l pt-[2.5625rem] lg:h-[137.625rem]">
+    <aside className="border-grey-200 w-full border-b border-l pt-[2.5625rem] lg:h-[137.625rem] lg:w-[33%]">
       <div className="mx-auto max-w-[22.75rem] px-2">
         <h3 className="font-grotesk text-grey-900 left-10 text-[1.75rem] font-bold">
           Streams
@@ -45,7 +45,7 @@ function UserHomepageStreamsSection(): ReactElement {
 
 function UserHomePageHeroSection(): ReactElement {
   return (
-    <section className="w-[67%] px-4 pt-[2.5625rem]">
+    <section className="w-full px-4 pt-[2.5625rem] lg:w-[67%]">
       <div className="mx-auto max-w-[43.625rem]">
         <h1 className="font-grotesk text-[1.75rem] font-bold leading-10">
           Top Picks
@@ -70,7 +70,7 @@ function UserHomePageHeroSection(): ReactElement {
 
 function UserHomePage(): ReactElement {
   return (
-    <div className="flex w-full pb-[11.625rem]">
+    <div className="flex w-full flex-col pb-[11.625rem] lg:flex-row">
       <UserHomePageHeroSection />
       <UserHomepageStreamsSection />
     </div>

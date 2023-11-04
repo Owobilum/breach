@@ -2,7 +2,7 @@ import { type ReactElement } from "react";
 import { Outlet } from "react-router-dom";
 
 import { Container } from "../container";
-import { BreachLogo } from "../logo";
+import { BreachLogo } from "../breach-logo";
 
 function AuthLayout(): ReactElement {
   return (

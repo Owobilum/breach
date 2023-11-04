@@ -11,7 +11,7 @@ function BreachLogo(props: Omit<SVGElementProps, "name">): ReactElement {
     <Link to="/">
       <Icon
         name="breach"
-        className={cn("h-6 w-36 fill-primary-600", className)}
+        className={cn("h-4 w-24 fill-primary-600 lg:h-6 lg:w-36", className)}
         {...restProps}
       />
     </Link>

@@ -167,7 +167,7 @@ function RegisterInterestsPage(): ReactElement {
       <p className="lg:pl-20">
         <BackButton className="mb-2 mt-[1.5625rem]" />
       </p>
-      <div className="mx-auto max-w-[45.75rem]">
+      <div className="mx-auto max-w-[45.75rem] pb-10">
         <div className="text-center">
           <img
             src="/images/bev_rounded.svg"
