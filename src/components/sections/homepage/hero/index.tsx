@@ -1,9 +1,11 @@
 import { type ReactElement } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Container } from "../../../container";
 import { Button } from "../../../button";
 
 function HomepageHeroSection(): ReactElement {
+  const navigate = useNavigate();
   return (
     <section className="bg-offWhite flex items-center lg:h-[39.4375rem]">
       <Container className="flex flex-col items-center lg:flex-row">
@@ -15,7 +17,12 @@ function HomepageHeroSection(): ReactElement {
             Subscribe to your favourite creators and thinkers. Support work that
             matters
           </p>
-          <Button text="lg" font="grotesk" className="font-bold">
+          <Button
+            text="lg"
+            font="grotesk"
+            className="font-bold"
+            onClick={() => navigate("/auth/register")}
+          >
             Join Breach
           </Button>
         </div>
@@ -23,6 +30,7 @@ function HomepageHeroSection(): ReactElement {
           src="/images/hero.gif"
           alt="mascot"
           className="block flex-1 lg:max-h-[32rem] lg:max-w-[40.0625rem]"
+          loading="lazy"
         />
       </Container>
     </section>

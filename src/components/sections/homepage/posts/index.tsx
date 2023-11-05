@@ -3,44 +3,62 @@ import { type ReactElement } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../tabs";
 import { Card } from "../../../card";
 import { PostInfo } from "../../../post-info";
+import {
+  useAllBlogPosts,
+  useBlogPostsFilter,
+} from "../../../../hooks/useBlogPosts";
+import type { IBlogPost, PostFilterType } from "../../../../types";
+import { formatDate } from "../../../../utils/helpers";
+
+function FilteredPosts({
+  posts,
+  filter,
+}: {
+  posts: IBlogPost[];
+  filter: PostFilterType;
+}) {
+  const filteredPosts = useBlogPostsFilter(posts, filter);
+
+  return (
+    <TabsContent value={filter}>
+      {!!filteredPosts?.length &&
+        filteredPosts.map(
+          ({ title, author, createdAt, content, series, id, imageUrl }) => (
+            <Card key={id} className="mb-16">
+              <Card.Image src={imageUrl} alt="banner" />
+              <Card.Frame>
+                <Card.Header>{series.name}</Card.Header>
+                <Card.Title>{title}</Card.Title>
+                <Card.Body>{content}</Card.Body>
+                <Card.Footer>
+                  <PostInfo author={author.name} date={formatDate(createdAt)} />
+                </Card.Footer>
+              </Card.Frame>
+            </Card>
+          ),
+        )}
+    </TabsContent>
+  );
+}
+
+const filters: PostFilterType[] = ["featured", "popular", "recent"];
 
 function HomepagePostsSection(): ReactElement {
+  const allPosts = useAllBlogPosts();
+
   return (
     <section className="lg:min-w-[40rem] lg:max-w-[42rem] xl:min-w-[46rem] xl:max-w-[48.5625rem]">
       <Tabs defaultValue="featured">
         <TabsList>
-          <TabsTrigger value="featured">Featured</TabsTrigger>
-          <TabsTrigger value="popular">Popular</TabsTrigger>
-          <TabsTrigger value="latest">Latest</TabsTrigger>
+          {filters.map((filter) => (
+            <TabsTrigger key={filter} value={filter} className="capitalize">
+              {filter}
+            </TabsTrigger>
+          ))}
         </TabsList>
-        <TabsContent value="featured">
-          {Array(8)
-            .fill(2)
-            .map((_a, i) => (
-              <Card key={i} className="mb-16">
-                <Card.Image
-                  src="https://res.cloudinary.com/chiefoleka/image/upload/v1698664703/vzb0crpojxblkzzrrtne"
-                  alt="banner"
-                />
-                <Card.Frame>
-                  <Card.Header>Work in Progress</Card.Header>
-                  <Card.Title>
-                    On migration and maintaining friendships
-                  </Card.Title>
-                  <Card.Body>
-                    I went to boarding school and left pretty early, so I had
-                    some experience with losing friends to relocation long
-                    before the
-                  </Card.Body>
-                  <Card.Footer>
-                    <PostInfo author="Lota Anidi" date="12 Dec 2022" />
-                  </Card.Footer>
-                </Card.Frame>
-              </Card>
-            ))}
-        </TabsContent>
-        <TabsContent value="popular">View Popular here.</TabsContent>
-        <TabsContent value="latest">View latest here.</TabsContent>
+        {filters.map((filter) => (
+          <FilteredPosts key={filter} posts={allPosts} filter={filter} />
+        ))}
       </Tabs>
     </section>
   );

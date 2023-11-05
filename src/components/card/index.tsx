@@ -16,7 +16,8 @@ function Image(props: ImageProps): ReactElement {
     <img
       src={src}
       className={cn(
-        "block w-full rounded-2xl lg:h-[11.5rem] lg:w-[16.625rem]",
+        // "border-red-500 block w-full rounded-2xl border lg:h-[11.5rem] lg:w-[16.625rem]",
+        "block w-full rounded-2xl object-cover object-center lg:max-h-[11.5rem] lg:min-h-[11.5rem] lg:min-w-[16.625rem] lg:max-w-[16.625rem]",
         className,
       )}
       {...restProps}
