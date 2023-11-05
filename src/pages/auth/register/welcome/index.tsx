@@ -1,7 +1,11 @@
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { Button } from "../../../../components/button";
 
 function RegisterWelcomePage(): ReactElement {
+  const navigate = useNavigate();
+
   return (
     <div className="grid place-items-center">
       <div className="relative">
@@ -28,7 +32,11 @@ function RegisterWelcomePage(): ReactElement {
         Just a few quick questions to help personalise your Breach experience.
         Are you ready?
       </p>
-      <Button className="font-medium" variant="black">
+      <Button
+        className="font-medium"
+        variant="black"
+        onClick={() => navigate("/auth/register/interests")}
+      >
         Let's begin!
       </Button>
     </div>

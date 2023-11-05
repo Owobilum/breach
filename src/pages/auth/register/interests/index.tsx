@@ -1,166 +1,50 @@
-import { useState, type ReactElement } from "react";
+import { useState, type ReactElement, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { BackButton } from "../../../../components/back-button";
 import { IconButton } from "../../../../components/icon-button";
 import { Button } from "../../../../components/button";
+import { useBlogCategories } from "../../../../hooks/useBlogCategories";
+import { useUserInterests } from "../../../../hooks/useUserInterests";
+import { Spinner } from "../../../../components/spinner";
 
-const interests = [
-  {
-    id: 1,
-    name: "Humor",
-    icon: "🤣",
-  },
-  {
-    id: 2,
-    name: "Lifehacks",
-    icon: "💡",
-  },
-  {
-    id: 3,
-    name: "Crypto",
-    icon: "🪙",
-  },
-  {
-    id: 4,
-    name: "Art",
-    icon: "🖊️",
-  },
-  {
-    id: 5,
-    name: "Travel",
-    icon: "✈️",
-  },
-  {
-    id: 6,
-    name: "Sports",
-    icon: "🏀",
-  },
-  {
-    id: 7,
-    name: "Photography",
-    icon: "📸",
-  },
-  {
-    id: 8,
-    name: "Food & drink",
-    icon: "🍔",
-  },
-  {
-    id: 9,
-    name: "History",
-    icon: "🏛️",
-  },
-  {
-    id: 10,
-    name: "Science",
-    icon: "🧬",
-  },
-  {
-    id: 11,
-    name: "News",
-    icon: "📰",
-  },
-  {
-    id: 12,
-    name: "Business & Finance",
-    icon: "📈",
-  },
-  {
-    id: 13,
-    name: "Music",
-    icon: "🎵",
-  },
-  {
-    id: 14,
-    name: "Tech",
-    icon: "📱",
-  },
-  {
-    id: 15,
-    name: "Faith & Spirituality",
-    icon: "🙏🏽",
-  },
-  {
-    id: 16,
-    name: "Fashion & Beauty",
-    icon: "💄",
-  },
-  {
-    id: 17,
-    name: "Nature",
-    icon: "🌱",
-  },
-  {
-    id: 18,
-    name: "General",
-    icon: "🌐",
-  },
-  {
-    id: 19,
-    name: "Health & Fitness",
-    icon: "🏋🏽‍♀️",
-  },
-  {
-    id: 20,
-    name: "Entertainment",
-    icon: "🎥",
-  },
-  {
-    id: 21,
-    name: "Gaming & Defi",
-    icon: "🎮",
-  },
-  {
-    id: 22,
-    name: "Education",
-    icon: "📚",
-  },
-  {
-    id: 23,
-    name: "Politics & Activism",
-    icon: "🪧",
-  },
-  {
-    id: 24,
-    name: "Art & Illustration",
-    icon: "🎨",
-  },
-  {
-    id: 25,
-    name: "World Economics",
-    icon: "💰",
-  },
-  {
-    id: 26,
-    name: "Demystifying the crypto-world",
-    icon: "🌍",
-  },
-];
-
-const checkIsSelected = (interest: string, selectedInterests: string[]) => {
+const checkIsSelected = (interestId: number, selectedInterests: number[]) => {
   return (
     selectedInterests.findIndex(
-      (selectedInterest) => selectedInterest === interest,
+      (selectedInterest) => selectedInterest === interestId,
     ) !== -1
   );
 };
 
 function RegisterInterestsPage(): ReactElement {
   const navigate = useNavigate();
-  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const categories = useBlogCategories();
+  const { userInterestsMutation } = useUserInterests();
+  const [selectedInterests, setSelectedInterests] = useState<number[]>([]);
 
-  const toggleIsSelected = (interest: string) => {
-    if (checkIsSelected(interest, selectedInterests)) {
+  const cannotClickNext =
+    userInterestsMutation.isPending || !selectedInterests.length;
+
+  const toggleIsSelected = (interestId: number) => {
+    if (checkIsSelected(interestId, selectedInterests)) {
       const updatedInterests = selectedInterests.filter(
-        (selectedInterest) => selectedInterest !== interest,
+        (selectedInterest) => selectedInterest !== interestId,
       );
       setSelectedInterests(updatedInterests);
     } else {
-      const updatedInterests = [...selectedInterests, interest];
+      const updatedInterests = [...selectedInterests, interestId];
       setSelectedInterests(updatedInterests);
     }
   };
+
+  const handleNext = () => {
+    userInterestsMutation.mutate({ interests: selectedInterests });
+  };
+
+  useEffect(() => {
+    if (!userInterestsMutation.isSuccess) return;
+    navigate("/user/home");
+  }, [navigate, userInterestsMutation.isSuccess]);
 
   return (
     <>
@@ -182,7 +66,7 @@ function RegisterInterestsPage(): ReactElement {
             you'll enjoy!
           </p>
           <div className="mb-12 mt-10">
-            {interests.map(({ icon, name, id }) => (
+            {categories?.map(({ icon, name, id }) => (
               <IconButton
                 key={id}
                 icon={icon}
@@ -190,18 +74,20 @@ function RegisterInterestsPage(): ReactElement {
                 size="sm"
                 text="sm"
                 variant={
-                  checkIsSelected(name, selectedInterests)
-                    ? "default"
-                    : "outline"
+                  checkIsSelected(id, selectedInterests) ? "default" : "outline"
                 }
-                onClick={toggleIsSelected.bind(null, name)}
+                onClick={toggleIsSelected.bind(null, id)}
               >
                 {name}
               </IconButton>
             ))}
           </div>
-          <Button variant="black" onClick={() => navigate("/user/home")}>
-            Next
+          <Button
+            variant="black"
+            onClick={handleNext}
+            disabled={cannotClickNext}
+          >
+            {userInterestsMutation.isPending ? <Spinner /> : "Next"}
           </Button>
 
           <Link

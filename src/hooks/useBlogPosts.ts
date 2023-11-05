@@ -1,14 +1,16 @@
 import { useQuery, useQueries } from "@tanstack/react-query";
+import { type AxiosResponse } from "axios";
 
 import type { IBlogPost, PostFilterType } from "../types";
 import { QUERY_KEYS } from "../react-query/constants";
-import { BASE_URL } from "../utils/constants";
 import { useBlogCategories } from "./useBlogCategories";
+import { axiosInstance } from "../axios-instance";
 
 async function fetchBlogPosts(categoryId: number): Promise<IBlogPost[]> {
-  const url = `${BASE_URL}/blog/posts?categoryId=${categoryId}`;
-  const res = await fetch(url);
-  const data = await res.json();
+  const endpoint = `/blog/posts?categoryId=${categoryId}`;
+  const { data }: AxiosResponse<IBlogPost[]> =
+    await axiosInstance.get(endpoint);
+
   return data;
 }
 

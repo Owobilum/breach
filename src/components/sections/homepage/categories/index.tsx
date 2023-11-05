@@ -15,7 +15,7 @@ function HomepageCategoriesSection(): ReactElement {
       </p>
       <div className="mt-[.875rem] flex flex-wrap gap-5">
         {!!blogCategories?.length &&
-          blogCategories.map(({ icon, name, id }) => (
+          blogCategories.slice(0, 15).map(({ icon, name, id }) => (
             <IconButton key={id} icon={icon}>
               {name}
             </IconButton>

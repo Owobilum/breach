@@ -42,7 +42,7 @@ const Alert = forwardRef(function Alert(
       {...restProps}
       ref={ref}
     >
-      {message ?? ""}
+      {message ?? "shshhsh"}
     </p>
   );
 });

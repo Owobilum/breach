@@ -2,18 +2,19 @@ import { useQuery } from "@tanstack/react-query";
 
 import type { IBlogCategory } from "../types";
 import { QUERY_KEYS } from "../react-query/constants";
-import { BASE_URL } from "../utils/constants";
+import { axiosInstance } from "../axios-instance";
+import { AxiosResponse } from "axios";
 
 const STALE_TIME = 1 * 1000 * 60 * 60; // 1 hour
 
 async function fetchBlogCategories(): Promise<IBlogCategory[]> {
-  const url = `${BASE_URL}/blog/categories`;
-  const res = await fetch(url);
-  const data = await res.json();
+  const endpoint = "/blog/categories";
+  const { data }: AxiosResponse<IBlogCategory[]> =
+    await axiosInstance.get(endpoint);
   return data;
 }
 
-export function useBlogCategories(): IBlogCategory[] {
+export function useBlogCategories() {
   const { data = [] } = useQuery({
     queryKey: [QUERY_KEYS.blogCategories],
     queryFn: fetchBlogCategories,

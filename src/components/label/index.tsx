@@ -18,7 +18,7 @@ const Label = forwardRef(function Label(
 ): ReactElement {
   return (
     <label
-      className={cn("text-grey-900 font-inter text-xs", className)}
+      className={cn("text-grey-900 font-inter block text-xs", className)}
       {...restProps}
       ref={ref}
     >
