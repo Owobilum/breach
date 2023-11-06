@@ -22,7 +22,7 @@ export function useBlogPostsByCategory(categoryId: number): IBlogPost[] {
   return data;
 }
 
-const STALE_TIME = 1 * 1000 * 60 * 5; // 5 minutes
+const STALE_TIME = 1 * 1000 * 60 * 5; // 5 minutes stale time should give users a real-time feel between reading content, without over-utilising resources
 
 export function useAllBlogPosts() {
   const blogCategories = useBlogCategories();

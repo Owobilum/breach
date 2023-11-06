@@ -9,11 +9,7 @@ interface IInterestsBody {
 
 const postUserInterests = (body: IInterestsBody) => {
   const user = getStoredUser();
-
-  if (!user?.token || !user?.userId) {
-    throw new Error("You are unauthorised. Kindly log in.");
-  }
-  const endpoint = `/users/${user.userId}/interests`;
+  const endpoint = `/users/${user?.userId}/interests`;
 
   return axiosInstance.post(endpoint, body, {
     headers: getJWTHeader(user),

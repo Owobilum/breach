@@ -9,10 +9,16 @@ import { AxiosError } from "axios";
 
 // Global error handler
 const errorHandler = (error: unknown): void => {
+  const isUnauthorised = error instanceof AxiosError && (error.response?.status === 401 ||error.response?.status === 403)
+  if(isUnauthorised){
+   toast.error("Unauthorised. Please log in.")
+   return
+  }
   const errorMessage =
     error instanceof Error ? error.message : "error connecting to server";
   const axiosErrorMessage = error instanceof AxiosError ? error?.response?.data?.message : null
  toast.error(axiosErrorMessage || errorMessage)
+
 };
 
 const queryClientConfig: QueryClientConfig = {
