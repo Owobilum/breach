@@ -3,7 +3,7 @@ import { type AxiosResponse } from "axios";
 
 import type { IBlogPost, PostFilterType } from "../types";
 import { QUERY_KEYS } from "../react-query/constants";
-import { useBlogCategories } from "./useBlogCategories";
+import { useGetBlogCategories } from "./useGetBlogCategories";
 import { axiosInstance } from "../axios-instance";
 
 async function fetchBlogPosts(categoryId: number): Promise<IBlogPost[]> {
@@ -25,7 +25,7 @@ export function useBlogPostsByCategory(categoryId: number): IBlogPost[] {
 const STALE_TIME = 1 * 1000 * 60 * 5; // 5 minutes stale time should give users a real-time feel between reading content, without over-utilising resources
 
 export function useAllBlogPosts() {
-  const blogCategories = useBlogCategories();
+  const blogCategories = useGetBlogCategories();
 
   const blogQueries = useQueries({
     queries: blogCategories?.map(({ id }) => {

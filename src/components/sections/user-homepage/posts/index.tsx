@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { type ReactElement } from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../tabs";
 import { Card } from "../../../card";
@@ -6,7 +6,7 @@ import { PostInfo } from "../../../post-info";
 
 function UserHomePagePostsSection(): ReactElement {
   return (
-    <section className="">
+    <section className="mx-auto max-w-[43.625rem]">
       <Tabs defaultValue="featured">
         <TabsList>
           <TabsTrigger value="featured">Featured</TabsTrigger>

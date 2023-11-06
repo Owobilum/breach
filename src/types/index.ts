@@ -48,3 +48,16 @@ export interface IUser {
   token: string;
   userId: number;
 }
+
+export interface IUserInterest {
+  id: number;
+  user: {
+    id: number;
+    email: string;
+  };
+  category: {
+    id: number;
+    name: string;
+    icon: string;
+  };
+}

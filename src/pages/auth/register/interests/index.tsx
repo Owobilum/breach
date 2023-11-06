@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { BackButton } from "../../../../components/back-button";
 import { IconButton } from "../../../../components/icon-button";
 import { Button } from "../../../../components/button";
-import { useBlogCategories } from "../../../../hooks/useBlogCategories";
-import { useUserInterests } from "../../../../hooks/useUserInterests";
+import { useGetBlogCategories } from "../../../../hooks/useGetBlogCategories";
 import { Spinner } from "../../../../components/spinner";
+import { usePostUserInterests } from "../../../../hooks/usePostUserInterests";
 
 const checkIsSelected = (interestId: number, selectedInterests: number[]) => {
   return (
@@ -18,8 +18,8 @@ const checkIsSelected = (interestId: number, selectedInterests: number[]) => {
 
 function RegisterInterestsPage(): ReactElement {
   const navigate = useNavigate();
-  const categories = useBlogCategories();
-  const { userInterestsMutation } = useUserInterests();
+  const categories = useGetBlogCategories();
+  const { userInterestsMutation } = usePostUserInterests();
   const [selectedInterests, setSelectedInterests] = useState<number[]>([]);
 
   const cannotClickNext =
@@ -58,7 +58,7 @@ function RegisterInterestsPage(): ReactElement {
             alt="breach_mascot"
             className="mx-auto"
           />
-          <h1 className="font-inter text-grey-900 my-2 text-2xl font-semibold leading-10">
+          <h1 className="my-2 font-inter text-2xl font-semibold leading-10 text-grey-900">
             What are your interests?
           </h1>
           <p className="font-inter text-base">
@@ -92,7 +92,7 @@ function RegisterInterestsPage(): ReactElement {
 
           <Link
             to="/user/home"
-            className="font-inter text-grey-700 mt-[1.125rem] block text-sm hover:text-primary-600"
+            className="mt-[1.125rem] block font-inter text-sm text-grey-700 hover:text-primary-600"
           >
             Skip for later
           </Link>

@@ -14,7 +14,7 @@ async function fetchBlogCategories(): Promise<IBlogCategory[]> {
   return data;
 }
 
-export function useBlogCategories() {
+export function useGetBlogCategories() {
   const { data = [] } = useQuery({
     queryKey: [QUERY_KEYS.blogCategories],
     queryFn: fetchBlogCategories,

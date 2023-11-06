@@ -1,16 +1,16 @@
 import { type ReactElement } from "react";
 
 import { IconButton } from "../../../icon-button";
-import { useBlogCategories } from "../../../../hooks/useBlogCategories";
+import { useGetBlogCategories } from "../../../../hooks/useGetBlogCategories";
 
 function HomepageCategoriesSection(): ReactElement {
-  const blogCategories = useBlogCategories();
+  const blogCategories = useGetBlogCategories();
   return (
     <aside className="xl:min-w-[22.875rem] xl:max-w-[22.9rem]">
-      <h2 className="text-grey-900 font-inter leading-11 text-[2rem] font-semibold">
+      <h2 className="font-inter text-[2rem] font-semibold leading-11 text-grey-900">
         Categories
       </h2>
-      <p className="font-inter text-grey-600 text-base">
+      <p className="font-inter text-base text-grey-600">
         Discover content from topics you care about
       </p>
       <div className="mt-[.875rem] flex flex-wrap gap-5">

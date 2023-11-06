@@ -29,7 +29,7 @@ function HomepageHeroSection(): ReactElement {
         <img
           src="/images/hero.gif"
           alt="mascot"
-          className="block flex-1 lg:max-h-[32rem] lg:max-w-[40.0625rem]"
+          className="block flex-1 lg:max-h-[32rem] lg:max-w-[40.0625rem] xl:h-[32rem] xl:w-[40.0625rem]"
           loading="lazy"
         />
       </Container>
