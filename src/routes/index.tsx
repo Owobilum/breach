@@ -8,6 +8,8 @@ import {
 } from "./lazy-import";
 import { RegisterLayout } from "../components/layouts/RegisterLayout";
 import { SuspenseWrapper } from "../components/suspense-wrapper";
+import ErrorBoundary from "../components/error-boundary";
+import { ErrorFallback } from "../components/error-fallback";
 
 export const authRoutes: IRoute[] = [
   {
@@ -46,9 +48,11 @@ export const userRoutes: IRoute[] = [
   {
     path: "home",
     element: (
-      <SuspenseWrapper>
-        <UserHomePageLazy />
-      </SuspenseWrapper>
+      <ErrorBoundary fallback={<ErrorFallback />}>
+        <SuspenseWrapper>
+          <UserHomePageLazy />
+        </SuspenseWrapper>
+      </ErrorBoundary>
     ),
     routeDescriptors: {
       name: "Home",
