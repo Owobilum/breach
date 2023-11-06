@@ -14,7 +14,11 @@ function Header(): ReactElement {
         <BreachLogo />
 
         <div className="flex gap-8">
-          <Button variant="outline" font="grotesk">
+          <Button
+            variant="outline"
+            font="grotesk"
+            onClick={() => navigate("/auth")}
+          >
             Log in
           </Button>
           <Button onClick={() => navigate("/auth/register")}>

@@ -1,6 +1,7 @@
 import type { IRoute } from "../types";
 import {
   HomePageLazy,
+  LoginPageLazy,
   RegisterInterestsPageLazy,
   RegisterPageLazy,
   RegisterWelcomePageLazy,
@@ -19,28 +20,44 @@ export const authRoutes: IRoute[] = [
       {
         path: "",
         element: (
-          <SuspenseWrapper>
-            <RegisterPageLazy />
-          </SuspenseWrapper>
+          <ErrorBoundary fallback={<ErrorFallback />}>
+            <SuspenseWrapper>
+              <RegisterPageLazy />
+            </SuspenseWrapper>
+          </ErrorBoundary>
         ),
       },
       {
         path: "welcome",
         element: (
-          <SuspenseWrapper>
-            <RegisterWelcomePageLazy />
-          </SuspenseWrapper>
+          <ErrorBoundary fallback={<ErrorFallback />}>
+            <SuspenseWrapper>
+              <RegisterWelcomePageLazy />
+            </SuspenseWrapper>
+          </ErrorBoundary>
         ),
       },
       {
         path: "interests",
         element: (
-          <SuspenseWrapper>
-            <RegisterInterestsPageLazy />
-          </SuspenseWrapper>
+          <ErrorBoundary fallback={<ErrorFallback />}>
+            <SuspenseWrapper>
+              <RegisterInterestsPageLazy />
+            </SuspenseWrapper>
+          </ErrorBoundary>
         ),
       },
     ],
+  },
+  {
+    path: "",
+    element: (
+      <ErrorBoundary fallback={<ErrorFallback />}>
+        <SuspenseWrapper>
+          <LoginPageLazy />
+        </SuspenseWrapper>
+      </ErrorBoundary>
+    ),
   },
 ];
 
@@ -81,9 +98,11 @@ export const visitorRoutes: IRoute[] = [
   {
     path: "",
     element: (
-      <SuspenseWrapper>
-        <HomePageLazy />
-      </SuspenseWrapper>
+      <ErrorBoundary fallback={<ErrorFallback />}>
+        <SuspenseWrapper>
+          <HomePageLazy />
+        </SuspenseWrapper>
+      </ErrorBoundary>
     ),
   },
 ];

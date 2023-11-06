@@ -12,8 +12,8 @@ import { useAuth } from "../../../hooks/useAuth";
 import { Alert } from "../../alert";
 import { Spinner } from "../../spinner";
 
-function RegisterForm(): ReactElement {
-  const { registerMutation } = useAuth();
+function LoginForm(): ReactElement {
+  const { loginMutation } = useAuth();
   const navigate = useNavigate();
   const {
     register,
@@ -25,13 +25,13 @@ function RegisterForm(): ReactElement {
   });
 
   const onSubmit: SubmitHandler<AuthDataType> = (data) => {
-    registerMutation.mutate(data);
+    loginMutation.mutate(data);
   };
 
   useEffect(() => {
-    if (!registerMutation.isSuccess) return;
-    navigate("/auth/register/welcome");
-  }, [navigate, registerMutation.isSuccess]);
+    if (!loginMutation.isSuccess) return;
+    navigate("/user/home");
+  }, [navigate, loginMutation.isSuccess]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -65,10 +65,10 @@ function RegisterForm(): ReactElement {
         className="mt-[2.375rem]"
         disabled={!isValid}
       >
-        {registerMutation.isPending ? <Spinner /> : "Continue"}
+        {loginMutation.isPending ? <Spinner /> : "Continue"}
       </Button>
     </form>
   );
 }
 
-export { RegisterForm };
+export { LoginForm };

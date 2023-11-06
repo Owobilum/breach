@@ -10,3 +10,4 @@ export const RegisterInterestsPageLazy = lazy(
 );
 export const UserHomePageLazy = lazy(() => import("../pages/user/index"));
 export const HomePageLazy = lazy(() => import("../pages/index"));
+export const LoginPageLazy = lazy(() => import("../pages/auth"));

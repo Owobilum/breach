@@ -1,10 +1,10 @@
 import { type ReactElement } from "react";
 import { Link } from "react-router-dom";
 
-import { BackButton } from "../../../components/back-button";
-import { RegisterForm } from "../../../components/forms/register";
+import { BackButton } from "../../components/back-button";
+import { LoginForm } from "../../components/forms/login";
 
-function RegisterPage(): ReactElement {
+function LoginPage(): ReactElement {
   return (
     <>
       <p className="lg:pl-20">
@@ -13,23 +13,22 @@ function RegisterPage(): ReactElement {
 
       <div className="mx-auto max-w-[28rem]">
         <h1 className="text-inter mb-2 text-center text-[2rem] font-semibold leading-[3rem] text-grey-900">
-          Join Breach
+          Login to Breach
         </h1>
         <p className="mx-auto mb-[3rem] text-center text-base leading-[1.875rem] text-grey-900">
-          Break through the noise and discover content that matters to you in
-          under 3 minutes.
+          Break through the noise and access content that matters to you.
         </p>
 
-        <RegisterForm />
+        <LoginForm />
 
         <p className="mt-[1.375rem] text-center text-sm text-grey-900">
-          Already have an account?{" "}
-          <Link to="/auth" className="underline">
-            Log in
+          Don't have an account?{" "}
+          <Link to="/auth/register" className="underline">
+            Join
           </Link>
         </p>
 
-        <p className="mb-[7rem] mt-[7.875rem] text-center font-grotesk text-sm text-grey-600">
+        {/* <p className="font-grotesk text-grey-600 mb-[7rem] mt-[7.875rem] text-center text-sm">
           By signing up, you agree to Breach's{" "}
           <Link to="/" className="text-primary-600 underline">
             Terms
@@ -39,10 +38,10 @@ function RegisterPage(): ReactElement {
             {" "}
             Privacy Policy
           </Link>
-        </p>
+        </p> */}
       </div>
     </>
   );
 }
 
-export default RegisterPage;
+export default LoginPage;
