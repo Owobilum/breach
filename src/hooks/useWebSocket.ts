@@ -30,6 +30,7 @@ function useWebSocket(socketUrl: string, messageStoreSize = 5) {
       console.log("connection closed");
       if (retryCount < MAX_RETRIES) {
         clearTimeout(timeoutIdRef.current);
+        // use the exponential backoff strategy
         const delay = Math.pow(2, retryCount) * 1000;
         const id = setTimeout(() => {
           console.log(`Attempting to reconnect (retry #${retryCount + 1})...`);

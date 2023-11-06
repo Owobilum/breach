@@ -3,12 +3,10 @@ import { type ReactElement } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../tabs";
 import { Card } from "../../../card";
 import { PostInfo } from "../../../post-info";
-import {
-  useAllBlogPosts,
-  useBlogPostsFilter,
-} from "../../../../hooks/useBlogPosts";
+import { useFilterBlogPosts } from "../../../../hooks/useFilterBlogPosts";
 import type { IBlogPost, PostFilterType } from "../../../../types";
 import { formatDate } from "../../../../utils/helpers";
+import { useGetAllBlogPosts } from "../../../../hooks/useGetAllBlogPosts";
 
 function FilteredPosts({
   posts,
@@ -17,7 +15,7 @@ function FilteredPosts({
   posts: IBlogPost[];
   filter: PostFilterType;
 }) {
-  const filteredPosts = useBlogPostsFilter(posts, filter);
+  const filteredPosts = useFilterBlogPosts(posts, filter);
 
   return (
     <TabsContent value={filter}>
@@ -44,7 +42,7 @@ function FilteredPosts({
 const filters: PostFilterType[] = ["featured", "popular", "recent"];
 
 function HomepagePostsSection(): ReactElement {
-  const allPosts = useAllBlogPosts();
+  const allPosts = useGetAllBlogPosts();
 
   return (
     <section className="lg:min-w-[40rem] lg:max-w-[42rem] xl:min-w-[46rem] xl:max-w-[48.5625rem]">

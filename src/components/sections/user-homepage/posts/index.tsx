@@ -3,45 +3,75 @@ import { type ReactElement } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../tabs";
 import { Card } from "../../../card";
 import { PostInfo } from "../../../post-info";
+import { useFilterBlogPostsByInterests } from "../../../../hooks/useFilterBlogPostsByInterests";
+import { useGetUserInterests } from "../../../../hooks/useGetUserInterests";
+import { getStoredUser } from "../../../../utils/storage";
+import { PostFilterType, IBlogPost, IUserInterest } from "../../../../types";
+import { formatDate } from "../../../../utils/helpers";
+import { useGetAllBlogPosts } from "../../../../hooks/useGetAllBlogPosts";
+
+function FilteredPosts({
+  posts,
+  filter,
+  interests,
+}: {
+  posts: IBlogPost[];
+  filter: PostFilterType;
+  interests: IUserInterest[];
+}) {
+  const filteredPosts = useFilterBlogPostsByInterests(posts, filter, interests);
+
+  return (
+    <TabsContent value={filter}>
+      {!!filteredPosts?.length &&
+        filteredPosts.map(
+          ({ title, author, createdAt, content, series, id, imageUrl }) => (
+            <Card key={id} className="mb-16 max-w-[41.625rem]">
+              <Card.Image
+                src={imageUrl}
+                alt="banner"
+                className="w-full  lg:max-h-[11.625rem] lg:min-h-[11.625rem] lg:min-w-[11.625rem] lg:max-w-[11.625rem]"
+              />
+              <Card.Frame>
+                <Card.Header>{series.name}</Card.Header>
+                <Card.Title>{title}</Card.Title>
+                <Card.Body>{content}</Card.Body>
+                <Card.Footer>
+                  <PostInfo author={author.name} date={formatDate(createdAt)} />
+                </Card.Footer>
+              </Card.Frame>
+            </Card>
+          ),
+        )}
+    </TabsContent>
+  );
+}
+
+const filters: PostFilterType[] = ["featured", "popular", "recent"];
 
 function UserHomePagePostsSection(): ReactElement {
+  const user = getStoredUser();
+  const allPosts = useGetAllBlogPosts();
+  const { interests: userInterests } = useGetUserInterests(user);
+
   return (
     <section className="mx-auto max-w-[43.625rem]">
       <Tabs defaultValue="featured">
         <TabsList>
-          <TabsTrigger value="featured">Featured</TabsTrigger>
-          <TabsTrigger value="popular">Popular</TabsTrigger>
-          <TabsTrigger value="latest">Latest</TabsTrigger>
+          {filters.map((filter) => (
+            <TabsTrigger key={filter} value={filter} className="capitalize">
+              {filter}
+            </TabsTrigger>
+          ))}
         </TabsList>
-        <TabsContent value="featured">
-          {Array(8)
-            .fill(2)
-            .map((_a, i) => (
-              <Card key={i} className="mb-16 max-w-[41.625rem]">
-                <Card.Image
-                  src="https://res.cloudinary.com/chiefoleka/image/upload/v1698664703/vzb0crpojxblkzzrrtne"
-                  alt="banner"
-                  className="h-[11.5rem] w-[11.5rem]"
-                />
-                <Card.Frame>
-                  <Card.Header>Work in Progress</Card.Header>
-                  <Card.Title>
-                    On migration and maintaining friendships
-                  </Card.Title>
-                  <Card.Body>
-                    I went to boarding school and left pretty early, so I had
-                    some experience with losing friends to relocation long
-                    before the
-                  </Card.Body>
-                  <Card.Footer>
-                    <PostInfo author="Lota Anidi" date="12 Dec 2022" />
-                  </Card.Footer>
-                </Card.Frame>
-              </Card>
-            ))}
-        </TabsContent>
-        <TabsContent value="popular">View Popular here.</TabsContent>
-        <TabsContent value="latest">View latest here.</TabsContent>
+        {filters.map((filter) => (
+          <FilteredPosts
+            key={filter}
+            posts={allPosts}
+            filter={filter}
+            interests={userInterests}
+          />
+        ))}
       </Tabs>
     </section>
   );
