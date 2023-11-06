@@ -4,19 +4,23 @@ import {
   QueryCache,
   MutationCache,
 } from "@tanstack/react-query";
+import toast from 'react-hot-toast';
+import { AxiosError } from "axios";
 
-const queryErrorHandler = (error: unknown): void => {
-  const title =
+// Global error handler
+const errorHandler = (error: unknown): void => {
+  const errorMessage =
     error instanceof Error ? error.message : "error connecting to server";
-  console.log({ title, error });
+  const axiosErrorMessage = error instanceof AxiosError ? error?.response?.data?.message : null
+ toast.error(axiosErrorMessage || errorMessage)
 };
 
 const queryClientConfig: QueryClientConfig = {
   queryCache: new QueryCache({
-    onError: queryErrorHandler,
+    onError: errorHandler,
   }),
   mutationCache: new MutationCache({
-    onError: queryErrorHandler,
+    onError: errorHandler,
   }),
 };
 
