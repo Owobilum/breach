@@ -14,4 +14,5 @@ export function setStoredUser(user: IUser): void {
 
 export function clearStoredUser(): void {
   localStorage.removeItem(USER_LOCALSTORAGE_KEY);
+  window.dispatchEvent(new Event("storage"));
 }
