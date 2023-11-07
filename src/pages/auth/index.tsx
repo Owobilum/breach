@@ -27,18 +27,6 @@ function LoginPage(): ReactElement {
             Join
           </Link>
         </p>
-
-        {/* <p className="font-grotesk text-grey-600 mb-[7rem] mt-[7.875rem] text-center text-sm">
-          By signing up, you agree to Breach's{" "}
-          <Link to="/" className="text-primary-600 underline">
-            Terms
-          </Link>{" "}
-          &{" "}
-          <Link to="/" className="text-primary-600 underline">
-            {" "}
-            Privacy Policy
-          </Link>
-        </p> */}
       </div>
     </>
   );

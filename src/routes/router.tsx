@@ -4,6 +4,7 @@ import { authRoutes, userRoutes, visitorRoutes } from ".";
 import { AuthLayout } from "../components/layouts/AuthLayout";
 import { UserLayout } from "../components/layouts/UserLayout";
 import { VisitorLayout } from "../components/layouts/VisitorLayout";
+import { NotFound } from "../components/not-found";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <div>Not Found</div>,
+    element: <NotFound />,
   },
 ]);
 

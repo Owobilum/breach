@@ -5,6 +5,8 @@ export const Loader = () => (
       alt="breach_mascot"
       className="mx-auto"
     />
-    <p className="mx-auto mt-4 max-w-[37.5rem]">Loading...</p>
+    <p className="mx-auto mt-4 max-w-[37.5rem]" role="status">
+      Loading...
+    </p>
   </div>
 );

@@ -29,7 +29,7 @@ function useAuth() {
       if (!user) {
         clearStoredUser();
       } else {
-        setStoredUser(user); // if we register successfully, persist the user in localStorage
+        setStoredUser(user); // if we register successfully, persist the user in localStorage since the token is valid for 24 hours
       }
     },
   });
@@ -41,7 +41,7 @@ function useAuth() {
       if (!user) {
         clearStoredUser();
       } else {
-        setStoredUser(user); // if we logged in successfully, persist the user in localStorage
+        setStoredUser(user); // if we logged in successfully, persist the user in localStorage since the token is valid for 24 hours
       }
     },
   });

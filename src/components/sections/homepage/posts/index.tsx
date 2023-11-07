@@ -1,4 +1,5 @@
 import { type ReactElement } from "react";
+import { Link } from "react-router-dom";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../tabs";
 import { Card } from "../../../card";
@@ -22,17 +23,22 @@ function FilteredPosts({
       {!!filteredPosts?.length &&
         filteredPosts.map(
           ({ title, author, createdAt, content, series, id, imageUrl }) => (
-            <Card key={id} className="mb-16">
-              <Card.Image src={imageUrl} alt="banner" />
-              <Card.Frame>
-                <Card.Header>{series.name}</Card.Header>
-                <Card.Title>{title}</Card.Title>
-                <Card.Body>{content}</Card.Body>
-                <Card.Footer>
-                  <PostInfo author={author.name} date={formatDate(createdAt)} />
-                </Card.Footer>
-              </Card.Frame>
-            </Card>
+            <Link to="/" key={id}>
+              <Card key={id} className="mb-16">
+                <Card.Image src={imageUrl} alt="banner" />
+                <Card.Frame>
+                  <Card.Header>{series.name}</Card.Header>
+                  <Card.Title>{title}</Card.Title>
+                  <Card.Body>{content}</Card.Body>
+                  <Card.Footer>
+                    <PostInfo
+                      author={author.name}
+                      date={formatDate(createdAt)}
+                    />
+                  </Card.Footer>
+                </Card.Frame>
+              </Card>
+            </Link>
           ),
         )}
     </TabsContent>

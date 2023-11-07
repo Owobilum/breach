@@ -6,7 +6,7 @@ function useStoredUser() {
   const [user, setUser] = useState(getStoredUser());
 
   useEffect(() => {
-    window.addEventListener("storage", () => setUser(null));
+    window.addEventListener("storage", () => setUser(getStoredUser()));
 
     return () => {
       window.removeEventListener("storage", () => null);
