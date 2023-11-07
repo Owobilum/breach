@@ -2,7 +2,7 @@ import { type ReactElement } from "react";
 
 function UserHomePageHeroSection(): ReactElement {
   return (
-    <div className="mx-auto max-w-[43.625rem]">
+    <section className="mx-auto max-w-[43.625rem]">
       <h1 className="font-grotesk text-[1.75rem] font-bold leading-10">
         Top Picks
       </h1>
@@ -18,7 +18,7 @@ function UserHomePageHeroSection(): ReactElement {
         my financial planning. I've mainly been considering looking at my crypto
         wallets whenever I feel{" "}
       </p>
-    </div>
+    </section>
   );
 }
 
