@@ -16,7 +16,6 @@ function Image(props: ImageProps): ReactElement {
     <img
       src={src}
       className={cn(
-        // "border-red-500 block w-full rounded-2xl border lg:h-[11.5rem] lg:w-[16.625rem]",
         "block w-full rounded-2xl object-cover object-center lg:max-h-[11.5rem] lg:min-h-[11.5rem] lg:min-w-[16.625rem] lg:max-w-[16.625rem]",
         className,
       )}
@@ -43,7 +42,7 @@ function Header(props: PropsWithChildren<HeaderProps>): ReactElement {
 
   return (
     <h6
-      className={cn(" text-grey-600 text-sm uppercase", className)}
+      className={cn(" text-sm uppercase text-grey-600", className)}
       {...restProps}
     >
       {children}
@@ -59,7 +58,7 @@ function Title(props: PropsWithChildren<TitleProps>): ReactElement {
   return (
     <h6
       className={cn(
-        "text-grey-900 mb-1 mt-2 text-2xl font-semibold leading-9",
+        "mb-1 mt-2 text-2xl font-semibold leading-9 text-grey-900",
         className,
       )}
       {...restProps}
@@ -76,7 +75,7 @@ function Body(props: PropsWithChildren<BodyProps>): ReactElement {
 
   return (
     <p
-      className={cn("text-grey-600 line-clamp-2 text-base", className)}
+      className={cn("line-clamp-2 text-base text-grey-600", className)}
       {...restProps}
     >
       {children}
@@ -104,7 +103,7 @@ function Card(props: PropsWithChildren<CardProps>): ReactElement {
   return (
     <article
       className={cn(
-        "font-inter flex w-full flex-col gap-4 lg:h-[11.5rem] lg:flex-row lg:items-start  lg:gap-7",
+        "flex w-full flex-col gap-4 font-inter lg:h-[11.5rem] lg:flex-row lg:items-start  lg:gap-7",
         className,
       )}
       {...restProps}
