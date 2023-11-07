@@ -3,6 +3,7 @@ import { type ReactElement } from "react";
 import { UserHomePagePostsSection } from "../../components/sections/user-homepage/posts";
 import { UserHomePageHeroSection } from "../../components/sections/user-homepage/hero";
 import { UserHomepageStreamsSection } from "../../components/sections/user-homepage/streams";
+import { ErrorBoundaryWrapper } from "../../error-boundary-wrapper";
 
 function UserHomePage(): ReactElement {
   return (
@@ -12,7 +13,9 @@ function UserHomePage(): ReactElement {
         <UserHomePagePostsSection />
       </div>
       <div className="w-full border-b border-l border-grey-200 pt-[2.5625rem] lg:h-[137.625rem] lg:w-[33%]">
-        <UserHomepageStreamsSection />
+        <ErrorBoundaryWrapper>
+          <UserHomepageStreamsSection />
+        </ErrorBoundaryWrapper>
       </div>
     </div>
   );

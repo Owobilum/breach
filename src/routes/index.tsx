@@ -9,9 +9,8 @@ import {
 } from "./lazy-import";
 import { RegisterLayout } from "../components/layouts/RegisterLayout";
 import { SuspenseWrapper } from "../components/suspense-wrapper";
-import { ErrorBoundary } from "../components/error-boundary";
-import { ErrorFallback } from "../components/error-fallback";
 import { ProtectedRoute } from "../components/private-route";
+import { ErrorBoundaryWrapper } from "../error-boundary-wrapper";
 
 export const authRoutes: IRoute[] = [
   {
@@ -21,35 +20,35 @@ export const authRoutes: IRoute[] = [
       {
         path: "",
         element: (
-          <ErrorBoundary fallback={<ErrorFallback />}>
+          <ErrorBoundaryWrapper>
             <SuspenseWrapper>
               <RegisterPageLazy />
             </SuspenseWrapper>
-          </ErrorBoundary>
+          </ErrorBoundaryWrapper>
         ),
       },
       {
         path: "welcome",
         element: (
-          <ErrorBoundary fallback={<ErrorFallback />}>
+          <ErrorBoundaryWrapper>
             <ProtectedRoute>
               <SuspenseWrapper>
                 <RegisterWelcomePageLazy />
               </SuspenseWrapper>
             </ProtectedRoute>
-          </ErrorBoundary>
+          </ErrorBoundaryWrapper>
         ),
       },
       {
         path: "interests",
         element: (
-          <ErrorBoundary fallback={<ErrorFallback />}>
+          <ErrorBoundaryWrapper>
             <ProtectedRoute>
               <SuspenseWrapper>
                 <RegisterInterestsPageLazy />
               </SuspenseWrapper>
             </ProtectedRoute>
-          </ErrorBoundary>
+          </ErrorBoundaryWrapper>
         ),
       },
     ],
@@ -57,11 +56,11 @@ export const authRoutes: IRoute[] = [
   {
     path: "",
     element: (
-      <ErrorBoundary fallback={<ErrorFallback />}>
+      <ErrorBoundaryWrapper>
         <SuspenseWrapper>
           <LoginPageLazy />
         </SuspenseWrapper>
-      </ErrorBoundary>
+      </ErrorBoundaryWrapper>
     ),
   },
 ];
@@ -70,13 +69,13 @@ export const userRoutes: IRoute[] = [
   {
     path: "home",
     element: (
-      <ErrorBoundary fallback={<ErrorFallback />}>
+      <ErrorBoundaryWrapper>
         <ProtectedRoute>
           <SuspenseWrapper>
             <UserHomePageLazy />
           </SuspenseWrapper>
         </ProtectedRoute>
-      </ErrorBoundary>
+      </ErrorBoundaryWrapper>
     ),
     routeDescriptors: {
       name: "Home",
@@ -105,11 +104,11 @@ export const visitorRoutes: IRoute[] = [
   {
     path: "",
     element: (
-      <ErrorBoundary fallback={<ErrorFallback />}>
+      <ErrorBoundaryWrapper>
         <SuspenseWrapper>
           <HomePageLazy />
         </SuspenseWrapper>
-      </ErrorBoundary>
+      </ErrorBoundaryWrapper>
     ),
   },
 ];
