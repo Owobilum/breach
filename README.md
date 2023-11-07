@@ -1,27 +1,21 @@
-# React + TypeScript + Vite
+# Breach Onboarding Flow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Implements the user onboarding flow for the Breach content platform
 
-Currently, two official plugins are available:
+## How to run locally?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- git clone this repository
+- cd into `breach` directory
+- create a `.env` file at the project root and add the environment variables as specified in .env.example which is in the root directory
+- run `yarn`
+- run `yarn dev`
 
-## Expanding the ESLint configuration
+## Notes
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- A good place to start when studying the codebase is the pages folder `src/pages`. Most pages are made up of sections, which are grouped according to the page they belong to, and can be found within `src/components/sections`. The sections are then made up of components within the `src/components`.
 
-- Configure the top-level `parserOptions` property like this:
+- To ensure that the performance of the application does not degrade over time, I have implemented a caching mechanism and used appropriate data structures and algorithms where necessary. Requests are cached for periods based on their likelihood to change. For instance, the result of a request to fetch blog-post categories is cached and considered valid for longer because that data is unlikely to change frequently, hence we can conserve network resources.
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- User tokens are persisted in localStorage because they are valid for 1 day . This eliminates the need for a user to login when they return to the website and have a valid token. Storing tokens in localStorage is not the best practice for security, but since there is no refresh token mechanism, and the token validity period is so long, it makes sense especially as the website doesn't handle things like financial transactions.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Assets are optimized in the case where they are too large. I try to strike a balance between image quality and performance impact on the website.
