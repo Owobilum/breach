@@ -9,8 +9,9 @@ import {
 } from "./lazy-import";
 import { RegisterLayout } from "../components/layouts/RegisterLayout";
 import { SuspenseWrapper } from "../components/suspense-wrapper";
-import ErrorBoundary from "../components/error-boundary";
+import { ErrorBoundary } from "../components/error-boundary";
 import { ErrorFallback } from "../components/error-fallback";
+import { ProtectedRoute } from "../components/private-route";
 
 export const authRoutes: IRoute[] = [
   {
@@ -31,9 +32,11 @@ export const authRoutes: IRoute[] = [
         path: "welcome",
         element: (
           <ErrorBoundary fallback={<ErrorFallback />}>
-            <SuspenseWrapper>
-              <RegisterWelcomePageLazy />
-            </SuspenseWrapper>
+            <ProtectedRoute>
+              <SuspenseWrapper>
+                <RegisterWelcomePageLazy />
+              </SuspenseWrapper>
+            </ProtectedRoute>
           </ErrorBoundary>
         ),
       },
@@ -41,9 +44,11 @@ export const authRoutes: IRoute[] = [
         path: "interests",
         element: (
           <ErrorBoundary fallback={<ErrorFallback />}>
-            <SuspenseWrapper>
-              <RegisterInterestsPageLazy />
-            </SuspenseWrapper>
+            <ProtectedRoute>
+              <SuspenseWrapper>
+                <RegisterInterestsPageLazy />
+              </SuspenseWrapper>
+            </ProtectedRoute>
           </ErrorBoundary>
         ),
       },
@@ -66,9 +71,11 @@ export const userRoutes: IRoute[] = [
     path: "home",
     element: (
       <ErrorBoundary fallback={<ErrorFallback />}>
-        <SuspenseWrapper>
-          <UserHomePageLazy />
-        </SuspenseWrapper>
+        <ProtectedRoute>
+          <SuspenseWrapper>
+            <UserHomePageLazy />
+          </SuspenseWrapper>
+        </ProtectedRoute>
       </ErrorBoundary>
     ),
     routeDescriptors: {
